@@ -32,11 +32,11 @@ module.exports = {
       defaultsTo: 0
     },
 
-    INRbalance: {
+    VCNbalance: {
       type: 'float',
       defaultsTo: 0
     },
-    FreezedINRbalance: {
+    FreezedVCNbalance: {
       type: 'float',
       defaultsTo: 0
     },
@@ -59,7 +59,7 @@ module.exports = {
       type: "boolean",
       defaultsTo: false
     },
-    isINRAddress: {
+    isVCNAddress: {
       type: "boolean",
       defaultsTo: false
     },
@@ -70,7 +70,7 @@ module.exports = {
     userBCHAddress: {
       type: 'string'
     },
-    userINRAddress: {
+    userVCNAddress: {
       type: 'string'
     },
 
@@ -104,19 +104,14 @@ module.exports = {
       type: 'boolean',
       defaultsTo: false
     },
-    //Tradebalanceorder
-    tradebalanceorderDetails: {
-      collection: 'tradebalanceorder',
-      via: 'tradebalanceorderowner'
+    //VCN
+    bidsVCN: {
+      collection: 'bidVCN',
+      via: 'bidownerVCN'
     },
-    //INR
-    bidsINR: {
-      collection: 'bidINR',
-      via: 'bidownerINR'
-    },
-    asksINR: {
-      collection: 'askINR',
-      via: 'askownerINR'
+    asksVCN: {
+      collection: 'askVCN',
+      via: 'askownerVCN'
     },
     transations: {
       collection: 'transation',

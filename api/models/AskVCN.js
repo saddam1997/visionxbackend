@@ -1,5 +1,5 @@
 /**
- * AskINR.js
+ * AskVCN.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -18,7 +18,7 @@ module.exports = {
       defaultsTo: 0.00,
       required: true
     },
-    askAmountINR: {
+    askAmountVCN: {
       type: 'float',
       defaultsTo: 0.00,
       required: true
@@ -28,7 +28,7 @@ module.exports = {
       defaultsTo: 0.00,
       required: true
     },
-    totalaskAmountINR: {
+    totalaskAmountVCN: {
       type: 'float',
       defaultsTo: 0.00,
       required: true
@@ -67,14 +67,14 @@ module.exports = {
     marketId: {
       type: 'integer'
     },
-    askownerINR: {
+    askownerVCN: {
       model: 'user'
     }
   },
   afterCreate: function(values, next) {
     //values.createTimeUTC = moment.utc().format();
     values.createTimeUTC = Date.parse(moment.utc().format()) / 1000;
-    AskINR.update({
+    AskVCN.update({
       id: values.id
     }, values, next);
   }

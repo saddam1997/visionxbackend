@@ -1,5 +1,5 @@
 /**
- * BidINR.js
+ * BidVCN.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -44,12 +44,12 @@ module.exports = {
       defaultsTo: 0.00,
       required: true
     },
-    bidAmountINR: {
+    bidAmountVCN: {
       type: 'float',
       defaultsTo: 0.00,
       required: true
     },
-    totalbidAmountINR: {
+    totalbidAmountVCN: {
       type: 'float',
       defaultsTo: 0.00,
       required: true
@@ -68,14 +68,14 @@ module.exports = {
     marketId: {
       type: 'integer'
     },
-    bidownerINR: {
+    bidownerVCN: {
       model: 'user'
     }
   },
   afterCreate: function(values, next) {
     //values.createTimeUTC = moment.utc().format();
     values.createTimeUTC = Date.parse(moment.utc().format()) / 1000;
-    BidINR.update({
+    BidVCN.update({
       id: values.id
     }, values, next);
   }
