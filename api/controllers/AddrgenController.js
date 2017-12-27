@@ -4,7 +4,7 @@
  * @description :: Server-side logic for managing addrgens
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-//BTC Wallet Details qwert
+//BTC Wallet Details qwert  uoiuoiuo
 var bitcoinBTC = require('bitcoin');
 var clientBTC = new bitcoinBTC.Client({
   host: sails.config.company.clientBTChost,
