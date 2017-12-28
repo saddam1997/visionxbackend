@@ -12,7 +12,6 @@ var nodemailer = require('nodemailer');
 var mergeJSON = require("merge-json");
 var validator = require('validator');
 var crypto = require("crypto");
-
 var transporter = nodemailer.createTransport({
   service: sails.config.common.supportEmailIdService,
   auth: {
@@ -20,7 +19,6 @@ var transporter = nodemailer.createTransport({
     pass: sails.config.common.supportEmailIdpass
   }
 });
-
 var projectURL = sails.config.common.projectURL;
 
 module.exports = {
@@ -34,7 +32,7 @@ module.exports = {
     var googlesecreatekey = req.body.googlesecreatekey;
     if (!validator.isEmail(useremailaddress)) {
       return res.json({
-        "message": "Please Enter valid email id",
+        "message": "The Email provided by you is incorrect . Please enter valid Email ID",
         statusCode: 400
       });
     }
@@ -48,7 +46,7 @@ module.exports = {
     if (userpassword !== userconfirmPassword) {
       console.log("Password and confirmPassword doesn\'t match!");
       return res.json({
-        "message": 'Password and confirmPassword doesn\'t match!',
+        "message": 'The passwords provided by you is not match with each other .Please provide valid one or re-enter them correctly.',
         statusCode: 400
       });
     }
@@ -56,7 +54,7 @@ module.exports = {
     if (userspendingpassword !== userconfirmspendingpassword) {
       console.log("spendingpassword and confirmspendingpassword doesn\'t match!");
       return res.json({
-        "message": 'spendingpassword and confirmspendingpassword doesn\'t match!',
+        "message": 'The spending passwords provided by you is not match with each other .Please provide valid one or re-enter them correctly.',
         statusCode: 400
       });
     }
@@ -81,7 +79,7 @@ module.exports = {
       if (user) {
         console.log("Use email exit and return ");
         return res.json({
-          "message": 'email already exist',
+          "message": 'Your Email Id is already exist, Please Sign in.',
           statusCode: 400
         });
       }

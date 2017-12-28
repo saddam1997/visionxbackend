@@ -113,6 +113,24 @@ module.exports = {
       collection: 'askVCN',
       via: 'askownerVCN'
     },
+    //BCH
+    bidsBCH: {
+      collection: 'bidBCH',
+      via: 'bidownerBCH'
+    },
+    asksBCH: {
+      collection: 'askBCH',
+      via: 'askownerBCH'
+    },
+    //LTC
+    bidsLTC: {
+      collection: 'bidLTC',
+      via: 'bidownerLTC'
+    },
+    asksLTC: {
+      collection: 'askLTC',
+      via: 'askownerLTC'
+    },
     transations: {
       collection: 'transation',
       via: 'transationowner'
