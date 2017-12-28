@@ -32,6 +32,15 @@ module.exports = {
       defaultsTo: 0
     },
 
+    LTCbalance: {
+      type: 'float',
+      defaultsTo: 0
+    },
+    FreezedLTCbalance: {
+      type: 'float',
+      defaultsTo: 0
+    },
+
     VCNbalance: {
       type: 'float',
       defaultsTo: 0
@@ -59,6 +68,10 @@ module.exports = {
       type: "boolean",
       defaultsTo: false
     },
+    isLTCAddress: {
+      type: "boolean",
+      defaultsTo: false
+    },
     isVCNAddress: {
       type: "boolean",
       defaultsTo: false
@@ -68,6 +81,9 @@ module.exports = {
       type: 'string'
     },
     userBCHAddress: {
+      type: 'string'
+    },
+    userLTCAddress: {
       type: 'string'
     },
     userVCNAddress: {
