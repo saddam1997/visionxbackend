@@ -1,3 +1,4 @@
 node_modules
 config/ServerRPCDetails.js
 config/common.js
+config/constants.js
