@@ -93,44 +93,37 @@ module.exports = {
             });
           }
 
-          bcrypt.hash(googlesecreatekey, 10, function(err, hashsgooglesecreatekey) {
-            if (err) {
-              console.log("Error To bcrypt spendingpassword");
-              return res.json({
-                "message": err,
-                statusCode: 500
-              });
-            }
-            var otpForEmail = crypto.randomBytes(20).toString('hex');;
-            console.log("otpForEmail :: " + otpForEmail);
-            bcrypt.hash(otpForEmail.toString(), 10, function(err, hash) {
-              if (err) return next(err);
-              var encOtpForEmail = hash;
-              var userObj = {
-                email: useremailaddress,
-                password: userpassword,
-                encryptedSpendingpassword: hashspendingpassword,
-                encryptedEmailVerificationOTP: encOtpForEmail,
-                googlesecreatekey: hashsgooglesecreatekey
-              }
-              User.create(userObj).exec(function(err, userAddDetails) {
-                if (err) {
-                  console.log("Error to Create New user !!!");
-                  console.log(err);
-                  return res.json({
-                    "message": "Error to create New User",
-                    statusCode: 400
-                  });
-                }
-                console.log("User Create Succesfully...........");
 
-                var verificationURL = projectURL + "/user/verifyEmailAddress?email=" + useremailaddress + "&otp=" + otpForEmail;
-                //console.log("verificationURL ::: " + verificationURL);
-                var mailOptions = {
-                  from: sails.config.common.supportEmailId,
-                  to: useremailaddress,
-                  subject: 'Please verify email !!!',
-                  html: `
+          var otpForEmail = crypto.randomBytes(20).toString('hex');;
+          console.log("otpForEmail :: " + otpForEmail);
+          bcrypt.hash(otpForEmail.toString(), 10, function(err, hash) {
+            if (err) return next(err);
+            var encOtpForEmail = hash;
+            var userObj = {
+              email: useremailaddress,
+              password: userpassword,
+              encryptedSpendingpassword: hashspendingpassword,
+              encryptedEmailVerificationOTP: encOtpForEmail,
+              googlesecreatekey: googlesecreatekey
+            }
+            User.create(userObj).exec(function(err, userAddDetails) {
+              if (err) {
+                console.log("Error to Create New user !!!");
+                console.log(err);
+                return res.json({
+                  "message": "Error to create New User",
+                  statusCode: 400
+                });
+              }
+              console.log("User Create Succesfully...........");
+
+              var verificationURL = projectURL + "/user/verifyEmailAddress?email=" + useremailaddress + "&otp=" + otpForEmail;
+              //console.log("verificationURL ::: " + verificationURL);
+              var mailOptions = {
+                from: sails.config.common.supportEmailId,
+                to: useremailaddress,
+                subject: 'Please verify email !!!',
+                html: `
                   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                   <html xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                   <head>
@@ -276,22 +269,22 @@ module.exports = {
                   </body>
 
                   </html>`
-                };
-                transporter.sendMail(mailOptions, function(error, info) {
-                  if (error) {
-                    console.log(error);
-                  } else {
-                    console.log('Email sent: ' + info.response);
-                    return res.json(200, {
-                      "message": "We sent link on your email address please verify link!!!",
-                      "userMailId": useremailaddress,
-                      statusCode: 200
-                    });
-                  }
-                });
+              };
+              transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                  return res.json(200, {
+                    "message": "We sent link on your email address please verify link!!!",
+                    "userMailId": useremailaddress,
+                    statusCode: 200
+                  });
+                }
               });
             });
           });
+
         });
       }
     });
