@@ -245,7 +245,7 @@ module.exports = {
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                       <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                        The Visionx Team
+                                        The visionex Team
                                       </td>
                                     </tr>
 
@@ -257,7 +257,7 @@ module.exports = {
                               <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                   <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center"
-                                    valign="top">Follow <a href="http://twitter.com/visionx" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@visionx</a> on Twitter.</td>
+                                    valign="top">Follow <a href="http://twitter.com/visionex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@visionex</a> on Twitter.</td>
                                 </tr>
                               </table>
                             </div>
@@ -316,13 +316,13 @@ module.exports = {
         });
       }
       if (user.verifyEmail) {
-      //var  mess = {message: 'Email already verified'};
+        //var  mess = {message: 'Email already verified'};
 
-        return res.redirect('http://visionx.io/?message=Email already verified');
-       //return res.json({
+        return res.redirect('http://visionex.io/?message=Email already verified');
+        //return res.json({
         //  "message": "Email already verified !!",
-          //statusCode: 401
-         //});
+        //statusCode: 401
+        //});
       }
       User.compareEmailVerificationOTP(otp, user, function(err, valid) {
         if (err) {
@@ -465,7 +465,7 @@ module.exports = {
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                       <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                        The Visionx Team
+                                        The visionex Team
                                       </td>
                                     </tr>
 
@@ -477,7 +477,7 @@ module.exports = {
                               <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                   <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center"
-                                    valign="top">Follow <a href="http://twitter.com/visionx" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@Visionx</a> on Twitter.</td>
+                                    valign="top">Follow <a href="http://twitter.com/visionex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@visionex</a> on Twitter.</td>
                                 </tr>
                               </table>
                             </div>
@@ -500,7 +500,7 @@ module.exports = {
                 }
               });
 
-              return res.redirect('http://Visionx.io/?message=Email verified successfully');
+              return res.redirect('http://visionex.io/?message=Email verified successfully');
 
               // res.json(200, {
               //   "message": "Email verified successfully",
@@ -586,7 +586,7 @@ module.exports = {
                             <tr>
                               <td class="content-cell" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; padding: 35px; word-break: break-word;">
                                 <h1 style="box-sizing: border-box; color: #2F3133; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 19px; font-weight: bold; margin-top: 0;" align="left">Hi,</h1>
-                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your Visionx account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
+                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your visionex account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
 
                                 <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
                                   <tr>
@@ -603,7 +603,7 @@ module.exports = {
                                   </tr>
                                 </table>
                                 <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">Thanks,
-                                <br />The Visionx Team</p>
+                                <br />The visionex Team</p>
                               </td>
                             </tr>
                           </table>
