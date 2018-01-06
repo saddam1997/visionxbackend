@@ -155,6 +155,10 @@ module.exports = {
       collection: 'ticket',
       via: 'ticketOwnerId'
     },
+    loginHistory: {
+      collection: 'loginHistory',
+      via: 'loginowner'
+    },
     toJSON: function() {
       var obj = this.toObject();
       delete obj.encryptedPassword;

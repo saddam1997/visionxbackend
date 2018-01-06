@@ -72,7 +72,7 @@ module.exports = {
       if (user && !user.verifyEmail) {
         console.log("Use email exit But but not verified ");
         return res.json({
-          "message": 'Email already exit but not varifed please login and verify',
+          "message": 'Email already exist but not varifed please login and verify',
           statusCode: 400
         });
       }
@@ -245,7 +245,7 @@ module.exports = {
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                       <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                        The BitwireX Team
+                                        The Visionx Team
                                       </td>
                                     </tr>
 
@@ -257,7 +257,7 @@ module.exports = {
                               <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                   <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center"
-                                    valign="top">Follow <a href="http://twitter.com/bitwirex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@bitwirex</a> on Twitter.</td>
+                                    valign="top">Follow <a href="http://twitter.com/visionx" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@visionx</a> on Twitter.</td>
                                 </tr>
                               </table>
                             </div>
@@ -316,11 +316,13 @@ module.exports = {
         });
       }
       if (user.verifyEmail) {
-        return res.redirect('http://bitwirex.io/');
-        // return res.json({
-        //   "message": "Email already verified !!",
-        //   statusCode: 401
-        // });
+      //var  mess = {message: 'Email already verified'};
+
+        return res.redirect('http://visionx.io/?message=Email already verified');
+       //return res.json({
+        //  "message": "Email already verified !!",
+          //statusCode: 401
+         //});
       }
       User.compareEmailVerificationOTP(otp, user, function(err, valid) {
         if (err) {
@@ -350,7 +352,156 @@ module.exports = {
                 });
               }
               console.log("Update passoword successfully!!!");
-              return res.redirect('http://bitwirex.io');
+              var mailOptions = {
+                from: sails.config.common.supportEmailId,
+                to: userMailId,
+                subject: ' Eamil verified successfully !!!',
+                html: `
+                  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                  <html xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                  <head>
+                    <meta name="viewport" content="width=device-width" />
+                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                    <title>Welcome mail</title>
+
+
+                    <style type="text/css">
+                      img {
+                        max-width: 100%;
+                      }
+
+                      body {
+                        -webkit-font-smoothing: antialiased;
+                        -webkit-text-size-adjust: none;
+                        width: 100% !important;
+                        height: 100%;
+                        line-height: 1.6em;
+                      }
+
+                      body {
+                        background-color: #f6f6f6;
+                      }
+
+                      @media only screen and (max-width: 640px) {
+                        body {
+                          padding: 0 !important;
+                        }
+                        h1 {
+                          font-weight: 800 !important;
+                          margin: 20px 0 5px !important;
+                        }
+                        h2 {
+                          font-weight: 800 !important;
+                          margin: 20px 0 5px !important;
+                        }
+                        h3 {
+                          font-weight: 800 !important;
+                          margin: 20px 0 5px !important;
+                        }
+                        h4 {
+                          font-weight: 800 !important;
+                          margin: 20px 0 5px !important;
+                        }
+                        h1 {
+                          font-size: 22px !important;
+                        }
+                        h2 {
+                          font-size: 18px !important;
+                        }
+                        h3 {
+                          font-size: 16px !important;
+                        }
+                        .container {
+                          padding: 0 !important;
+                          width: 100% !important;
+                        }
+                        .content {
+                          padding: 0 !important;
+                        }
+                        .content-wrap {
+                          padding: 10px !important;
+                        }
+                        .invoice {
+                          width: 100% !important;
+                        }
+                      }
+                    </style>
+                  </head>
+
+                  <body itemscope itemtype="http://schema.org/EmailMessage" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em; background-color: #f6f6f6; margin: 0;"
+                    bgcolor="#f6f6f6">
+
+                    <table class="body-wrap" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6">
+                      <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                        <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top"></td>
+                        <td class="container" width="600" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto;"
+                          valign="top">
+                          <div class="content" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
+                            <table class="main" width="100%" cellpadding="0" cellspacing="0" itemprop="action" itemscope itemtype="http://schema.org/ConfirmAction" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; border-radius: 3px; background-color: #fff; margin: 0; border: 1px solid #e9e9e9;"
+                              bgcolor="#fff">
+                              <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                <td class="content-wrap" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 20px;" valign="top">
+                                  <meta itemprop="name" content="Confirm Email" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" />
+                                  <table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+
+                                      </td>
+                                    </tr>
+                                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+                                        Dear user,
+                                      </td>
+                                    </tr>
+                                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+                                      Your Email has been verified successfully
+                                      </td>
+                                    </tr>
+                                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+                                        Kind Regards,
+                                      </td>
+                                    </tr>
+                                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+                                        The Visionx Team
+                                      </td>
+                                    </tr>
+
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                            <div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+                              <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                  <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center"
+                                    valign="top">Follow <a href="http://twitter.com/visionx" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@Visionx</a> on Twitter.</td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </td>
+                        <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top"></td>
+                      </tr>
+                    </table>
+                  </body>
+
+                  </html>`
+              };
+
+              transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+
+                }
+              });
+
+              return res.redirect('http://Visionx.io/?message=Email verified successfully');
+
               // res.json(200, {
               //   "message": "Email verified successfully",
               //   "userMailId": userMailId,
@@ -435,7 +586,7 @@ module.exports = {
                             <tr>
                               <td class="content-cell" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; padding: 35px; word-break: break-word;">
                                 <h1 style="box-sizing: border-box; color: #2F3133; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 19px; font-weight: bold; margin-top: 0;" align="left">Hi,</h1>
-                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your bitwirex account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
+                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your Visionx account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
 
                                 <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
                                   <tr>
@@ -452,7 +603,7 @@ module.exports = {
                                   </tr>
                                 </table>
                                 <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">Thanks,
-                                <br />The Bitwirex Team</p>
+                                <br />The Visionx Team</p>
                               </td>
                             </tr>
                           </table>

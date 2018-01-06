@@ -24,7 +24,7 @@
     "rebuild": "^0.1.2",
     "redis": "^2.8.0",
     "request": "^2.81.0",
-    "sails": "~0.12.13",
+    "sails": "^0.12.14",
     "sails-disk": "~0.10.9",
     "sails-hook-cron": "^2.2.0",
     "sails-mongo": "^0.12.2",

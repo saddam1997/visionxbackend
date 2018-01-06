@@ -17,11 +17,13 @@ module.exports = {
     });
   },
   authentcate: function(req, res) {
-    console.log("Enter into authentcate!!!" + req.body.email);
+    console.log("Enter into authentcate!!!");
     var useremail = req.param('email');
     var password = req.param('password');
-    //var ip = req.param('ip');
-    var ip = "192.168.0.1";
+    var ip = req.param('ip');
+
+
+//    var ip = "192.168.0.1";
     if (!useremail || !password || !ip) {
       console.log("email and password required");
       return res.json({
@@ -75,7 +77,17 @@ module.exports = {
             });
           } else {
             console.log("User is valid return user details !!!");
-
+            LoginHistory.create({
+                ip: ip,
+                status: loginHostoryStatus,
+                statusName: loginHostoryStatusName,
+                loginowner: user.id
+              })
+              .exec(function(err, createLoginHistory) {
+                if (err) {
+                  console.log("Error to update user");
+                  return res.serverError(err);
+                }
             if (user.tfastatus) {
               console.log("Enter into this user.tfastatus");
               res.json({
@@ -95,9 +107,10 @@ module.exports = {
                   id: user.id
                 })
               });
-            }
-          }
-        });
-      });
-  }
-};
+            }//
+          })
+        }//
+      })
+  })
+}
+}
