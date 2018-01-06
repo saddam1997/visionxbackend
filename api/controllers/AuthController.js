@@ -23,7 +23,7 @@ module.exports = {
     var ip = req.param('ip');
 
 
-//    var ip = "192.168.0.1";
+    //    var ip = "192.168.0.1";
     if (!useremail || !password || !ip) {
       console.log("email and password required");
       return res.json({
@@ -51,13 +51,13 @@ module.exports = {
         }
         if (!user.verifyEmail) {
           return res.json({
-            "message": "We already sent email verification link please verify your email !!",
+            "message": "We have already sent an email verification link to your registered email address. Please verify your email to continue !!!",
             statusCode: 401
           });
         }
         if (user.isUserDisable) {
           return res.json({
-            "message": "This email is disabled. Please contact to admin!!",
+            "message": "This email is disabled. Please contact admin !!!",
             statusCode: 401
           });
         }
@@ -88,29 +88,29 @@ module.exports = {
                   console.log("Error to update user");
                   return res.serverError(err);
                 }
-            if (user.tfastatus) {
-              console.log("Enter into this user.tfastatus");
-              res.json({
-                user: user,
-                statusCode: 201,
-                message: "Google Authenticattion Enabled For this user!!!",
-                token: jwToken.issue({
-                  id: user.id
-                })
-              });
-            } else {
-              console.log("Returnin user detailsss");
-              res.json({
-                user: user,
-                statusCode: 200,
-                token: jwToken.issue({
-                  id: user.id
-                })
-              });
-            }//
-          })
-        }//
+                if (user.tfastatus) {
+                  console.log("Enter into this user.tfastatus");
+                  res.json({
+                    user: user,
+                    statusCode: 201,
+                    message: "Google Authenticattion Enabled For this user!!!",
+                    token: jwToken.issue({
+                      id: user.id
+                    })
+                  });
+                } else {
+                  console.log("Returnin user detailsss");
+                  res.json({
+                    user: user,
+                    statusCode: 200,
+                    token: jwToken.issue({
+                      id: user.id
+                    })
+                  });
+                } //
+              })
+          } //
+        })
       })
-  })
-}
+  }
 }
