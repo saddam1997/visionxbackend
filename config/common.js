@@ -27,7 +27,7 @@ module.exports.common = {
 
   supportEmailId: 'support@visionex.io', //Support Email Id to send mail signup and login and forgot password
   supportEmailIdpass: 'visionex123', //Support Email Id passoword
-  supportEmailIdService: 'gmail',
+  supportEmailIdService: 'zoho',
   LABELPREFIX: 'EX',
   BTCMARKETID: 1,
   BCHMARKETID: 2,
