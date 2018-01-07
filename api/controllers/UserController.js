@@ -72,7 +72,7 @@ module.exports = {
       if (user && !user.verifyEmail) {
         console.log("Use email exit But but not verified ");
         return res.json({
-          "message": 'Email already exist but not varifed please login and verify',
+          "message": 'Email already exist but not verifed please login and verify',
           statusCode: 400
         });
       }
