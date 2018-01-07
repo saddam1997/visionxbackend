@@ -25,9 +25,9 @@ module.exports.common = {
   COMPANYACCOUNTLTC: "visionexLTC@gmail.com",
   COMPANYACCOUNTVCN: "visionexVCN@gmail.com",
 
-  supportEmailId: 'support@visionex.io', //Support Email Id to send mail signup and login and forgot password
-  supportEmailIdpass: 'visionex123', //Support Email Id passoword
-  supportEmailIdService: 'zoho',
+  supportEmailId: 'visioncoin017@gmail.com', //Support Email Id to send mail signup and login and forgot password
+  supportEmailIdpass: 'vision@123', //Support Email Id passoword
+  supportEmailIdService: 'gmail',
   LABELPREFIX: 'EX',
   BTCMARKETID: 1,
   BCHMARKETID: 2,
