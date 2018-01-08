@@ -52,9 +52,9 @@ module.exports = {
     }
 
     if (userspendingpassword !== userconfirmspendingpassword) {
-      console.log("spendingpassword and confirmspendingpassword doesn\'t match!");
+      console.log("transcationpassword and confirmtranscationpassword doesn\'t match!");
       return res.json({
-        "message": 'The spending passwords provided by you is not match with each other .Please provide valid one or re-enter them correctly.',
+        "message": 'The transcation passwords provided by you is not match with each other .Please provide valid one or re-enter them correctly.',
         statusCode: 400
       });
     }
@@ -86,7 +86,7 @@ module.exports = {
       if (!user) {
         bcrypt.hash(userspendingpassword, 10, function(err, hashspendingpassword) {
           if (err) {
-            console.log("Error To bcrypt spendingpassword");
+            console.log("Error To bcrypt transcationpassword");
             return res.json({
               "message": err,
               statusCode: 500
@@ -245,7 +245,7 @@ module.exports = {
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                       <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                        The Visionx Team
+                                        The Visionex Team
                                       </td>
                                     </tr>
 
@@ -257,7 +257,7 @@ module.exports = {
                               <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                   <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center"
-                                    valign="top">Follow <a href="http://twitter.com/visionx" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@visionx</a> on Twitter.</td>
+                                    valign="top">Follow <a href="http://twitter.com/visionex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@Visionex</a> on Twitter.</td>
                                 </tr>
                               </table>
                             </div>
@@ -318,7 +318,7 @@ module.exports = {
       if (user.verifyEmail) {
       //var  mess = {message: 'Email already verified'};
 
-        return res.redirect('http://visionx.io/?message=Email already verified');
+        return res.redirect('https://www.visionex.io/login.php?message=Email already verified');
        //return res.json({
         //  "message": "Email already verified !!",
           //statusCode: 401
@@ -347,15 +347,15 @@ module.exports = {
             .exec(function(err, updatedUser) {
               if (err) {
                 return res.json({
-                  "message": "Error to update passoword!",
+                  "message": "Error to update password!",
                   statusCode: 401
                 });
               }
-              console.log("Update passoword successfully!!!");
+              console.log("Update password successfully!!!");
               var mailOptions = {
                 from: sails.config.common.supportEmailId,
                 to: userMailId,
-                subject: ' Eamil verified successfully !!!',
+                subject: 'Email verified successfully !!!',
                 html: `
                   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                   <html xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -465,7 +465,7 @@ module.exports = {
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                       <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                        The Visionx Team
+                                        The Visionex Team
                                       </td>
                                     </tr>
 
@@ -477,7 +477,7 @@ module.exports = {
                               <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                   <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center"
-                                    valign="top">Follow <a href="http://twitter.com/visionx" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@Visionx</a> on Twitter.</td>
+                                    valign="top">Follow <a href="http://twitter.com/visionex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@Visionex</a> on Twitter.</td>
                                 </tr>
                               </table>
                             </div>
@@ -500,7 +500,7 @@ module.exports = {
                 }
               });
 
-              return res.redirect('http://Visionx.io/?message=Email verified successfully');
+              return res.redirect('https://www.visionex.io/login.php?message=Email verified successfully');
 
               // res.json(200, {
               //   "message": "Email verified successfully",
@@ -534,7 +534,7 @@ module.exports = {
       }
       if (!user) {
         return res.json({
-          "message": "Invalid email!",
+          "message": "This email not exist!",
           statusCode: 401
         });
       }
@@ -586,7 +586,7 @@ module.exports = {
                             <tr>
                               <td class="content-cell" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; padding: 35px; word-break: break-word;">
                                 <h1 style="box-sizing: border-box; color: #2F3133; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 19px; font-weight: bold; margin-top: 0;" align="left">Hi,</h1>
-                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your Visionx account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
+                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your Visionex account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
 
                                 <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
                                   <tr>
@@ -603,7 +603,7 @@ module.exports = {
                                   </tr>
                                 </table>
                                 <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">Thanks,
-                                <br />The Visionx Team</p>
+                                <br />The Visionex Team</p>
                               </td>
                             </tr>
                           </table>
@@ -639,7 +639,7 @@ module.exports = {
                 }
                 console.log("OTP forgot update successfully!!!");
                 return res.json({
-                  "message": "Otp sent on user mail id",
+                  "message": "Otp sent to  user Email ",
                   "userMailId": userMailId,
                   statusCode: 200
                 });
@@ -686,13 +686,13 @@ module.exports = {
         }
         if (!valid) {
           return res.json({
-            "message": "Please enter correct otp",
+            "message": "Please enter correct otp!",
             statusCode: 401
           });
         } else {
           console.log("OTP is verified successfully");
           res.json(200, {
-            "message": "OTP is verified successfully",
+            "message": "OTP  verified successfully",
             "userMailId": userMailId,
             statusCode: 200
           });
@@ -715,7 +715,7 @@ module.exports = {
     if (newPassword != confirmNewPassword) {
       console.log("Can't be empty!!! by user.....");
       return res.json({
-        "message": "New Password and Confirm New Password not match",
+        "message": "NewPassword and Confirm NewPassword not match",
         statusCode: 401
       });
     }
@@ -736,7 +736,7 @@ module.exports = {
       }
       bcrypt.hash(confirmNewPassword, 10, function(err, hash) {
         if (err) res.json({
-          "message": "Errot to bcrypt passoword",
+          "message": "Errot to bcrypt password",
           statusCode: 401
         });
         var newEncryptedPass = hash;
@@ -748,13 +748,13 @@ module.exports = {
           .exec(function(err, updatedUser) {
             if (err) {
               return res.json({
-                "message": "Error to update passoword!",
+                "message": "Error to update password!",
                 statusCode: 401
               });
             }
-            console.log("Update passoword successfully!!!");
+            console.log("Update password successfully!!!");
             return res.json({
-              "message": "Your passoword updated successfully",
+              "message": "Your password has been updated successfully",
               statusCode: 200
             });
           });
@@ -777,14 +777,14 @@ module.exports = {
     if (currentPassword == newPassword) {
       console.log("Can't be empty!!! by user.....");
       return res.json({
-        "message": "Current password cannot be same as new Password",
+        "message": "Current password cannot be same as newPassword",
         statusCode: 401
       });
     }
     if (newPassword != confirmNewPassword) {
       console.log("Can't be empty!!! by user.....");
       return res.json({
-        "message": "New  password and confirm new password are not match",
+        "message": "Newpassword and confirm newPassword  not matched",
         statusCode: 401
       });
     }
@@ -819,7 +819,7 @@ module.exports = {
         } else {
           bcrypt.hash(confirmNewPassword, 10, function(err, hash) {
             if (err) res.json({
-              "message": "Errot to bcrypt passoword",
+              "message": "Errot to bcrypt password",
               statusCode: 401
             });
             var newEncryptedPass = hash;
@@ -831,13 +831,13 @@ module.exports = {
               .exec(function(err, updatedUser) {
                 if (err) {
                   return res.json({
-                    "message": "Error to update passoword!",
+                    "message": "Error to update password!",
                     statusCode: 401
                   });
                 }
                 console.log("Your password updated successfully!!!");
                 return res.json({
-                  "message": "Your password updated successfully",
+                  "message": "Your password has been updated successfully",
                   statusCode: 200
                 });
               });
@@ -848,7 +848,7 @@ module.exports = {
     });
   },
   updateCurrentSpendingPassword: function(req, res, next) {
-    console.log("Enter into updateCurrentSpendingPassword");
+    console.log("Enter into updateCurrentTranscationPassword");
     var userMailId = req.body.userMailId;
     var currentSpendingPassword = req.body.currentSpendingPassword;
     var newSpendingPassword = req.body.newSpendingPassword;
@@ -863,14 +863,14 @@ module.exports = {
     if (currentSpendingPassword == newSpendingPassword) {
       console.log("Can't be empty!!! by user.....");
       return res.json({
-        "message": "Current spending password cannot be same as new spending password",
+        "message": "Current transcation password cannot be same as new transcation password",
         statusCode: 401
       });
     }
     if (newSpendingPassword != confirmNewSpendingPassword) {
       console.log("Can't be empty!!! by user.....");
       return res.json({
-        "message": "New spending password and confirm new spending password are not match",
+        "message": "New transcation password and confirm new transcation password are not match",
         statusCode: 401
       });
     }
@@ -899,13 +899,13 @@ module.exports = {
         }
         if (!valid) {
           return res.json({
-            "message": "Please enter correct currentSpendingPassword",
+            "message": "Please enter correct currentTranscationPassword",
             statusCode: 401
           });
         } else {
           bcrypt.hash(confirmNewSpendingPassword, 10, function(err, hash) {
             if (err) res.json({
-              "message": "Errot to bcrypt passoword",
+              "message": "Errot to bcrypt password",
               statusCode: 401
             });
             var newEncryptedPass = hash;
@@ -917,13 +917,13 @@ module.exports = {
               .exec(function(err, updatedUser) {
                 if (err) {
                   return res.json({
-                    "message": "Error to update passoword!",
+                    "message": "Error to update password!",
                     statusCode: 401
                   });
                 }
                 console.log("Your password updated successfully!!!");
                 return res.json({
-                  "message": "Your spending password updated successfully",
+                  "message": "Your transcation password has been  updated successfully",
                   statusCode: 200
                 });
               });
@@ -934,7 +934,7 @@ module.exports = {
     });
   },
   sentOtpToUpdateSpendingPassword: function(req, res, next) {
-    console.log("Enter into sentOtpToUpdateSpendingPassword");
+    console.log("Enter into sentOtpToUpdateTranscationPassword");
     var userMailId = req.body.userMailId;
     var currentPassword = req.body.currentPassword;
     if (!userMailId || !currentPassword) {
@@ -979,8 +979,8 @@ module.exports = {
           var mailOptions = {
             from: sails.config.common.supportEmailId,
             to: userMailId,
-            subject: 'Please reset your spending password',
-            text: 'We heard that you lost your BccPay spending password. Sorry about that! ' +
+            subject: 'Please reset your transcation password',
+            text: 'We heard that you lost your BccPay transcation password. Sorry about that! ' +
               '\n But don’t worry! You can use this otp reset your password ' + newCreatedPassword
           };
           transporter.sendMail(mailOptions, function(error, info) {
@@ -1004,7 +1004,7 @@ module.exports = {
                     }
                     console.log("OTP forgot update successfully!!!");
                     return res.json({
-                      "message": "Otp sent on user mail id",
+                      "message": "Otp sent on user Email ",
                       "userMailId": userMailId,
                       statusCode: 200
                     });
@@ -1018,7 +1018,7 @@ module.exports = {
     });
   },
   verifyOtpToEmailForgotSpendingPassord: function(req, res, next) {
-    console.log("Enter into verifyOtpToEmailForgotSpendingPassord ");
+    console.log("Enter into verifyOtpToEmailForgotTranscationPassord ");
     var userMailId = req.body.userMailId;
     var otp = req.body.otp;
     if (!userMailId || !otp) {
@@ -1059,7 +1059,7 @@ module.exports = {
         } else {
           console.log("OTP is verified successfully");
           res.json(200, {
-            "message": "OTP for spending passoword is verified successfully",
+            "message": "OTP for transcation password is verified successfully",
             "userMailId": userMailId,
             statusCode: 200
           });
@@ -1068,7 +1068,7 @@ module.exports = {
     });
   },
   updateForgotSpendingPassordAfterVerify: function(req, res, next) {
-    console.log("Enter into updateForgotSpendingPassordAfterVerif");
+    console.log("Enter into updateForgotTranscationPassordAfterVerify");
     var userMailId = req.body.userMailId;
     var newSpendingPassword = req.body.newSpendingPassword;
     var confirmSpendingPassword = req.body.confirmSpendingPassword;
@@ -1080,9 +1080,9 @@ module.exports = {
       });
     }
     if (newSpendingPassword != confirmSpendingPassword) {
-      console.log("New Password and Confirm New Password not match");
+      console.log("NewPassword and Confirm NewPassword not match");
       return res.json({
-        "message": "New Spending Password and Confirm Spending Password not match",
+        "message": "New Transcation Password and Confirm NewTranscation Password not matched",
         statusCode: 401
       });
     }
@@ -1103,7 +1103,7 @@ module.exports = {
       }
       bcrypt.hash(newSpendingPassword, 10, function(err, hash) {
         if (err) res.json({
-          "message": "Errot to bcrypt passoword",
+          "message": "Error to bcrypt password",
           statusCode: 401
         });
         var newEncryptedPass = hash;
@@ -1115,13 +1115,13 @@ module.exports = {
           .exec(function(err, updatedUser) {
             if (err) {
               return res.json({
-                "message": "Error to update passoword!",
+                "message": "Error to update password!",
                 statusCode: 401
               });
             }
-            console.log("Update passoword successfully!!!");
+            console.log("Update password successfully!!!");
             return res.json({
-              "message": "Your spending passoword updated successfully",
+              "message": "Your transcation password has been updated successfully",
               statusCode: 200
             });
           });
@@ -1177,11 +1177,11 @@ module.exports = {
             .exec(function(err, updatedUser) {
               if (err) {
                 return res.json({
-                  "message": "Error to update passoword!",
+                  "message": "Error to update password!",
                   statusCode: 401
                 });
               }
-              console.log("Update current SpendingPassword successfully!!!");
+              console.log("Update current transcationPassword successfully!!!");
 
               User.findOne({
                 email: userMailId
@@ -1278,7 +1278,7 @@ module.exports = {
         .exec(function(err, updatedUser) {
           if (err) {
             return res.json({
-              "message": "Error to update passoword!",
+              "message": "Error to update password!",
               statusCode: 401
             });
           }
@@ -1343,7 +1343,7 @@ module.exports = {
         .exec(function(err, updatedUser) {
           if (err) {
             return res.json({
-              "message": "Error to update passoword!",
+              "message": "Error to update password!",
               statusCode: 401
             });
           }

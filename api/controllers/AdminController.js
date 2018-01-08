@@ -259,7 +259,8 @@ module.exports = {
      });
    }
    Admin.findOne({
-     email: useremail
+     email: useremail,
+     status:1
    }).exec(function(err, admin) {
      if (err) {
        return res.json({
@@ -290,7 +291,7 @@ module.exports = {
        } else {
          console.log("User is valid return user details !!!");
 
-           console.log("Returnin user detailsss");
+           console.log("Return user detailsss");
            res.json({
              admin: admin,
              statusCode: 200,

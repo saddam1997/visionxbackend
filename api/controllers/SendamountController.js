@@ -125,13 +125,13 @@ module.exports = {
               });
             }
             if (!valid) {
-              console.log("Invalid spendingpassword !!!");
+              console.log("Invalid transcationpassword !!!");
               return res.json({
-                "message": 'Enter valid spending password',
+                "message": 'Enter valid transcation password',
                 statusCode: 401
               });
             } else {
-              console.log("Valid spending password !!!");
+              console.log("Valid transcation password !!!");
               var BTCBalanceInDB = new BigNumber(userDetails.BTCbalance);
 
               console.log("Enter Before If ");
@@ -440,13 +440,13 @@ module.exports = {
               });
             }
             if (!valid) {
-              console.log("Invalid spendingpassword !!!");
+              console.log("Invalid transcationpassword !!!");
               return res.json({
-                "message": 'Enter valid spending password',
+                "message": 'Enter valid transcation password',
                 statusCode: 401
               });
             } else {
-              console.log("Valid spending password !!!");
+              console.log("Valid transcation password !!!");
               var BCHBalanceInDB = new BigNumber(userDetails.BCHbalance);
 
               console.log("Enter Before If ");
@@ -755,13 +755,13 @@ module.exports = {
               });
             }
             if (!valid) {
-              console.log("Invalid spendingpassword !!!");
+              console.log("Invalid transcationpassword !!!");
               return res.json({
-                "message": 'Enter valid spending password',
+                "message": 'Enter valid transcation password',
                 statusCode: 401
               });
             } else {
-              console.log("Valid spending password !!!");
+              console.log("Valid transcation password !!!");
               var LTCBalanceInDB = new BigNumber(userDetails.LTCbalance);
 
               console.log("Enter Before If ");
@@ -1072,13 +1072,13 @@ module.exports = {
               });
             }
             if (!valid) {
-              console.log("Invalid spendingpassword !!!");
+              console.log("Invalid transcationpassword !!!");
               return res.json({
-                "message": 'Enter valid spending password',
+                "message": 'Enter valid transcation password',
                 statusCode: 401
               });
             } else {
-              console.log("Valid spending password !!!");
+              console.log("Valid transcation password !!!");
               var VCNBalanceInDB = new BigNumber(userDetails.VCNbalance);
 
               console.log("Enter Before If ");
