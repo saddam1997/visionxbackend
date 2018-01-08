@@ -9,7 +9,7 @@ module.exports.common = {
   statusTwoPending: "Pending", //Pending
   statusThreeCancelled: "Cancelled", //Cancelled
 
-  projectURL: 'http://192.168.1.16:1338',
+  projectURL: 'http://visionex.io:1338',
 
   txFeeWithdrawSuccessBTC: 0.0001,
   txFeeWithdrawSuccessBCH: 0.0001,
@@ -25,8 +25,8 @@ module.exports.common = {
   COMPANYACCOUNTLTC: "visionexLTC@gmail.com",
   COMPANYACCOUNTVCN: "visionexVCN@gmail.com",
 
-  supportEmailId: 'support@visionex.io', //Support Email Id to send mail signup and login and forgot password
-  supportEmailIdpass: 'visionex123', //Support Email Id passoword
+  supportEmailId: 'visioncoin017@gmail.com', //Support Email Id to send mail signup and login and forgot password
+  supportEmailIdpass: 'vision@123', //Support Email Id passoword
   supportEmailIdService: 'gmail',
   LABELPREFIX: 'EX',
   BTCMARKETID: 1,

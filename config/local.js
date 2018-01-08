@@ -26,6 +26,7 @@
  * For more information, check out:
  * http://sailsjs.org/#!/documentation/anatomy/myApp/config/local.js.html
  */
+var fs = require('fs');
 
 module.exports = {
 
@@ -82,4 +83,8 @@ module.exports = {
 
   // environment: process.env.NODE_ENV || 'development'
 
+  ssl: {
+    key: require('fs').readFileSync(require('path').resolve(__dirname, 'ssl/key.pem')),
+    cert: require('fs').readFileSync(require('path').resolve(__dirname, 'ssl/cert.pem'))
+  }
 };
