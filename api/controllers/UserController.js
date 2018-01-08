@@ -504,11 +504,7 @@ module.exports = {
 
                 }
               });
-
-
-              return res.redirect('https://www.visionex.io/login.php?message=Email verified successfully'); ===
-
-
+              return res.redirect('https://www.visionex.io/login.php?message=Email verified successfully');
               // res.json(200, {
               //   "message": "Email verified successfully",
               //   "userMailId": userMailId,
