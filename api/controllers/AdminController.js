@@ -247,62 +247,62 @@ module.exports = {
         }
       });
   },
- adminLogin:function(req,res){
-   console.log('enter username and password ');
-   var useremail = req.param('email');
-   var password = req.param('password');
-   if (!useremail || !password ) {
-     console.log("email and password required");
-     return res.json({
-       "message": "Can't be empty!!!",
-       statusCode: 401
-     });
-   }
-   Admin.findOne({
-     email: useremail,
-     status:1
-   }).exec(function(err, admin) {
-     if (err) {
-       return res.json({
-         "message": "Error to find user",
-         statusCode: 401
-       });
-     }
-     if (!admin) {
-       return res.json({
-         "message": "Invalid email!",
-         statusCode: 401
-       });
-     }
-     console.log("Compare passs");
-     Admin.comparePassword(password, admin, function(err, valid) {
-       if (err) {
-         console.log("Error to compare password");
-         return res.json({
-           "message": "Error to compare password",
-           statusCode: 401
-         });
-       }
-       if (!valid) {
-         return res.json({
-           "message": "Please enter correct password",
-           statusCode: 401
-         });
-       } else {
-         console.log("User is valid return user details !!!");
+  adminLogin: function(req, res) {
+    console.log('enter username and password ');
+    var useremail = req.param('email');
+    var password = req.param('password');
+    if (!useremail || !password) {
+      console.log("email and password required");
+      return res.json({
+        "message": "Can't be empty!!!",
+        statusCode: 401
+      });
+    }
+    Admin.findOne({
+      email: useremail,
+      status: 1
+    }).exec(function(err, admin) {
+      if (err) {
+        return res.json({
+          "message": "Error to find user",
+          statusCode: 401
+        });
+      }
+      if (!admin) {
+        return res.json({
+          "message": "Invalid email!",
+          statusCode: 401
+        });
+      }
+      console.log("Compare passs");
+      Admin.comparePassword(password, admin, function(err, valid) {
+        if (err) {
+          console.log("Error to compare password");
+          return res.json({
+            "message": "Error to compare password",
+            statusCode: 401
+          });
+        }
+        if (!valid) {
+          return res.json({
+            "message": "Please enter correct password",
+            statusCode: 401
+          });
+        } else {
+          console.log("User is valid return user details !!!");
 
-           console.log("Return user detailsss");
-           res.json({
-             admin: admin,
-             statusCode: 200,
-             token: jwToken.issue({
-               id: admin.id
-             })
-           });
-         }
-       })
-     })
-   },
+          console.log("Return user detailsss");
+          res.json({
+            admin: admin,
+            statusCode: 200,
+            token: jwToken.issue({
+              id: admin.id
+            })
+          });
+        }
+      })
+    })
+  },
 
 
 

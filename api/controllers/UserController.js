@@ -245,11 +245,8 @@ module.exports = {
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                       <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-<<<<<<< HEAD
                                         The Visionex Team
-=======
-                                        The visionex Team
->>>>>>> 1c740eb20a88f8d6241519f8bd5449472d164844
+
                                       </td>
                                     </tr>
 
@@ -261,11 +258,8 @@ module.exports = {
                               <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                   <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center"
-<<<<<<< HEAD
                                     valign="top">Follow <a href="http://twitter.com/visionex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@Visionex</a> on Twitter.</td>
-=======
                                     valign="top">Follow <a href="http://twitter.com/visionex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@visionex</a> on Twitter.</td>
->>>>>>> 1c740eb20a88f8d6241519f8bd5449472d164844
                                 </tr>
                               </table>
                             </div>
@@ -326,13 +320,9 @@ module.exports = {
       if (user.verifyEmail) {
         //var  mess = {message: 'Email already verified'};
 
-<<<<<<< HEAD
         return res.redirect('https://www.visionex.io/login.php?message=Email already verified');
-       //return res.json({
-=======
-        return res.redirect('http://visionex.io/?message=Email already verified');
         //return res.json({
->>>>>>> 1c740eb20a88f8d6241519f8bd5449472d164844
+
         //  "message": "Email already verified !!",
         //statusCode: 401
         //});
@@ -478,11 +468,8 @@ module.exports = {
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                       <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-<<<<<<< HEAD
                                         The Visionex Team
-=======
-                                        The visionex Team
->>>>>>> 1c740eb20a88f8d6241519f8bd5449472d164844
+
                                       </td>
                                     </tr>
 
@@ -494,11 +481,8 @@ module.exports = {
                               <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                   <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center"
-<<<<<<< HEAD
                                     valign="top">Follow <a href="http://twitter.com/visionex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@Visionex</a> on Twitter.</td>
-=======
-                                    valign="top">Follow <a href="http://twitter.com/visionex" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">@visionex</a> on Twitter.</td>
->>>>>>> 1c740eb20a88f8d6241519f8bd5449472d164844
+
                                 </tr>
                               </table>
                             </div>
@@ -521,11 +505,9 @@ module.exports = {
                 }
               });
 
-<<<<<<< HEAD
-              return res.redirect('https://www.visionex.io/login.php?message=Email verified successfully');
-=======
-              return res.redirect('http://visionex.io/?message=Email verified successfully');
->>>>>>> 1c740eb20a88f8d6241519f8bd5449472d164844
+
+              return res.redirect('https://www.visionex.io/login.php?message=Email verified successfully'); ===
+
 
               // res.json(200, {
               //   "message": "Email verified successfully",
@@ -611,12 +593,7 @@ module.exports = {
                             <tr>
                               <td class="content-cell" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; padding: 35px; word-break: break-word;">
                                 <h1 style="box-sizing: border-box; color: #2F3133; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 19px; font-weight: bold; margin-top: 0;" align="left">Hi,</h1>
-<<<<<<< HEAD
                                 <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your Visionex account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
-=======
-                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your visionex account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
->>>>>>> 1c740eb20a88f8d6241519f8bd5449472d164844
-
                                 <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
                                   <tr>
                                     <td align="center" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; word-break: break-word;">
@@ -632,11 +609,8 @@ module.exports = {
                                   </tr>
                                 </table>
                                 <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">Thanks,
-<<<<<<< HEAD
                                 <br />The Visionex Team</p>
-=======
-                                <br />The visionex Team</p>
->>>>>>> 1c740eb20a88f8d6241519f8bd5449472d164844
+
                               </td>
                             </tr>
                           </table>
