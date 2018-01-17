@@ -105,6 +105,20 @@ module.exports = {
     encryptedEmailVerificationOTP: {
       type: 'string'
     },
+    taxProofImageName: {
+     type: 'string'
+   },
+   addressProofImageName: {
+     type: 'string'
+   },
+   isKYC: {
+     type: 'boolean',
+     defaultsTo: false
+   },
+   verificationStatus: {
+     type: 'integer',
+     defaultsTo: 0
+   },
     verifyEmail: {
       type: 'boolean',
       defaultsTo: false
@@ -155,6 +169,10 @@ module.exports = {
       collection: 'ticket',
       via: 'ticketOwnerId'
     },
+    verificationDetails: {
+     collection: 'verification',
+     via: 'verificationowner'
+   },
     loginHistory: {
       collection: 'loginHistory',
       via: 'loginowner'
