@@ -80,7 +80,9 @@ module.exports = {
    * variable.  If NODE_ENV is not set, Sails will run in the                *
    * 'development' environment.                                              *
    ***************************************************************************/
-
+   paths: {
+    public: '/var/www/html/visionkyc/' /// or wherever
+  },
   // environment: process.env.NODE_ENV || 'development'
 
   ssl: {
