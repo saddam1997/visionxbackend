@@ -85,8 +85,8 @@ module.exports = {
   },
   // environment: process.env.NODE_ENV || 'development'
 
-  ssl: {
-    key: require('fs').readFileSync(require('path').resolve(__dirname, 'ssl/key.pem')),
-    cert: require('fs').readFileSync(require('path').resolve(__dirname, 'ssl/cert.pem'))
-  }
+  // ssl: {
+  //   key: require('fs').readFileSync(require('path').resolve(__dirname, 'ssl/key.pem')),
+  //   cert: require('fs').readFileSync(require('path').resolve(__dirname, 'ssl/cert.pem'))
+  // }
 };
