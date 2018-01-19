@@ -9,7 +9,7 @@ module.exports.common = {
   statusTwoPending: "Pending", //Pending
   statusThreeCancelled: "Cancelled", //Cancelled
 
-  projectURL: 'http://visionex.io:1338',
+  projectURL: 'https://visionex.io:1338',
 
   txFeeWithdrawSuccessBTC: 0.0001,
   txFeeWithdrawSuccessBCH: 0.0001,
