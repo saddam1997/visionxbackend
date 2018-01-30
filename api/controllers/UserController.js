@@ -250,6 +250,7 @@ createNewUser: function(req, res) {
   var userconfirmPassword = req.body.confirmPassword;
   var userspendingpassword = req.body.spendingpassword;
   var userconfirmspendingpassword = req.body.confirmspendingpassword;
+  var googlesecreatekey = req.body.googlesecreatekey;
   var mobileNo = req.body.mobileNo;
 
   if (!validator.isEmail(useremailaddress)) {
@@ -258,7 +259,7 @@ createNewUser: function(req, res) {
       statusCode: 400
     });
   }
-  if (!mobileNo || !useremailaddress || !userpassword || !userconfirmPassword ||
+  if (!mobileNo || !useremailaddress || !userpassword || !googlesecreatekey || !userconfirmPassword ||
     !userspendingpassword || !userconfirmspendingpassword) {
     console.log("User Entered invalid parameter ");
     return res.json({
@@ -327,6 +328,7 @@ createNewUser: function(req, res) {
                 encryptedPassword: userPassword,
                 encryptedSpendingpassword: hashspendingpassword,
                 encryptedEmailVerificationOTP: encOtpForEmail,
+                googlesecreatekey: googlesecreatekey,
                 mobile : mobileNo,
                 isSignUp : true
               }
