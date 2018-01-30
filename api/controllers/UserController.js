@@ -1172,141 +1172,512 @@ createNewUser: function(req, res) {
   },
   sentOtpToEmailForgotPassword: function(req, res, next) {
 
-    console.log("Enter into sentOtpToEmailForgotPassword");
-    var userMailId = req.body.userMailId;
-    if (!userMailId) {
-      console.log("Can't be empty!!! by user.....");
+  console.log("Enter into sentOtpToEmail");
+  var userMailId = req.body.userMailId;
+  if (!userMailId) {
+    console.log("Can't be empty!!! by user.....");
+    return res.json({
+      "message": "Can't be empty!!!",
+      statusCode: 400
+    });
+  }
+
+  let condition ={ email : userMailId};
+
+  User.findOne(condition).exec(function(err, user) {
+    if (err) {
       return res.json({
-        "message": "Can't be empty!!!",
-        statusCode: 400
+        "message": "Error to find user",
+        statusCode: 401
       });
     }
-    User.findOne({
-      email: userMailId
-    }).exec(function(err, user) {
-      if (err) {
-        return res.json({
-          "message": "Error to find user",
-          statusCode: 401
-        });
-      }
-      if (!user) {
-        return res.json({
-          "message": "This email not exist!",
-          statusCode: 401
-        });
-      }
 
-      var newCreatedPassword = Math.floor(100000 + Math.random() * 900000);
-      console.log("newCreatedPassword :: " + newCreatedPassword);
-      var mailOptions = {
-        from: sails.config.common.supportEmailId,
-        to: userMailId,
-        subject: 'Please reset your password',
-        html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-          <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
-            <head>
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-              <title>Set up a new password for [Product Name]</title>
+    if (!user) {
+      return res.json({
+        "message": userMailId+" not register with us, Signup first",
+        statusCode: 401
+      });
+    }
+
+    if(user.verifyEmail){
+    var newCreatedPassword = Math.floor(100000 + Math.random() * 900000);
+            console.log("newCreatedPassword :: " + newCreatedPassword);
+            var mailOptions = {
+              from: sails.config.common.supportEmailId,
+              to: userMailId,
+              subject: 'Please Reset your password',
+              html: `
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml">
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>OTP Email</title>
+        <!-- Designed by https://github.com/kaytcat -->
+        <!-- Header image designed by Freepik.com -->
 
 
-            </head>
-            <body style="-webkit-text-size-adjust: none; box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; height: 100%; line-height: 1.4; margin: 0; width: 100% !important;" bgcolor="#F2F4F6"><style type="text/css">
-          body {
-          width: 100% !important; height: 100%; margin: 0; line-height: 1.4; background-color: #F2F4F6; color: #74787E; -webkit-text-size-adjust: none;
-          }
-          @media only screen and (max-width: 600px) {
-            .email-body_inner {
+        <style type="text/css">
+        /* Take care of image borders and formatting */
+
+        img { max-width: 600px; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;}
+        a img { border: none; }
+        table { border-collapse: collapse !important; }
+        #outlook a { padding:0; }
+        .ReadMsgBody { width: 100%; }
+        .ExternalClass {width:100%;}
+        .backgroundTable {margin:0 auto; padding:0; width:100% !important;}
+        table td {border-collapse: collapse;}
+        .ExternalClass * {line-height: 115%;}
+
+
+        /* General styling */
+
+        td {
+          font-family: Arial, sans-serif;
+        }
+
+        body {
+          -webkit-font-smoothing:antialiased;
+          -webkit-text-size-adjust:none;
+          width: 100%;
+          height: 100%;
+          color: #6f6f6f;
+          font-weight: 400;
+          font-size: 18px;
+        }
+
+
+        h1 {
+          margin: 10px 0;
+        }
+
+        a {
+          color: #27aa90;
+          text-decoration: none;
+        }
+
+        .force-full-width {
+          width: 100% !important;
+        }
+
+
+        .body-padding {
+          padding: 0 75px;
+        }
+
+
+
+        </style>
+
+        <style type="text/css" media="screen">
+            @media screen {
+              @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900);
+              /* Thanks Outlook 2013! */
+              * {
+                font-family: 'Source Sans Pro', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
+              }
+              .w280 {
+                width: 280px !important;
+              }
+
+            }
+        </style>
+
+        <style type="text/css" media="only screen and (max-width: 480px)">
+          /* Mobile styles */
+          @media only screen and (max-width: 480px) {
+
+            table[class*="w320"] {
+              width: 320px !important;
+            }
+
+            td[class*="w320"] {
+              width: 280px !important;
+              padding-left: 20px !important;
+              padding-right: 20px !important;
+            }
+
+            img[class*="w320"] {
+              width: 250px !important;
+              height: 67px !important;
+            }
+
+            td[class*="mobile-spacing"] {
+              padding-top: 10px !important;
+              padding-bottom: 10px !important;
+            }
+
+            *[class*="mobile-hide"] {
+              display: none !important;
+            }
+
+            *[class*="mobile-br"] {
+              font-size: 12px !important;
+            }
+
+            td[class*="mobile-w20"] {
+              width: 20px !important;
+            }
+
+            img[class*="mobile-w20"] {
+              width: 20px !important;
+            }
+
+            td[class*="mobile-center"] {
+              text-align: center !important;
+            }
+
+            table[class*="w100p"] {
               width: 100% !important;
             }
-            .email-footer {
-              width: 100% !important;
+
+            td[class*="activate-now"] {
+              padding-right: 0 !important;
+              padding-top: 20px !important;
             }
+
           }
-          @media only screen and (max-width: 500px) {
-            .button {
-              width: 100% !important;
-            }
-          }
-          </style>
-              <span class="preheader" style="box-sizing: border-box; display: none !important; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 1px; line-height: 1px; max-height: 0; max-width: 0; mso-hide: all; opacity: 0; overflow: hidden; visibility: hidden;">Use this link to reset your password. The link is only valid for 24 hours.</span>
-              <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0; padding: 0; width: 100%;" bgcolor="#F2F4F6">
-                <tr>
-                  <td align="center" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; word-break: break-word;">
-                    <table class="email-content" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0; padding: 0; width: 100%;">
+        </style>
+      </head>
+      <body  offset="0" class="body" style="padding:0; margin:0; display:block; background:#eeebeb; -webkit-text-size-adjust:none" bgcolor="#eeebeb">
+      <table align="center" cellpadding="0" cellspacing="0" width="100%" height="100%">
+        <tr>
+          <td align="center" valign="top" style="background-color:#eeebeb" width="100%">
+
+          <center>
+
+            <table cellspacing="0" cellpadding="0" width="600" class="w320">
+              <tr>
+                <td align="center" valign="top">
 
 
+
+
+                <table cellspacing="0" cellpadding="0" width="100%" style="background-color:#3bcdb0;">
+                  <tr>
+                    <td style="text-align: center;">
+                      <a href="#"><img class="w320" width="311" height="83" src="#" alt="company logo" ></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background-color:#3bcdb0;">
+
+                      <table cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
+                          <td style="font-size:40px; font-weight: 600; color: #ffffff; text-align:center;" class="mobile-spacing">
+                          <div class="mobile-br">&nbsp;</div>
+                            Welcome to Visionex.io
+                          <br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-size:24px; text-align:center; padding: 0 75px; color:#6f6f6f;" class="w320 mobile-spacing">
+                            <br>
+                          </td>
+                        </tr>
+                      </table>
+
+                    </td>
+                  </tr>
+                </table>
+
+                <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#ffffff" >
+                  <tr>
+                    <td style="background-color:#ffffff;">
+                      <table cellspacing="0" cellpadding="0" width="100%">
                       <tr>
-                        <td class="email-body" width="100%" cellpadding="0" cellspacing="0" style="-premailer-cellpadding: 0; -premailer-cellspacing: 0; border-bottom-color: #EDEFF2; border-bottom-style: solid; border-bottom-width: 1px; border-top-color: #EDEFF2; border-top-style: solid; border-top-width: 1px; box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0; padding: 0; width: 100%; word-break: break-word;" bgcolor="#FFFFFF">
-                          <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0 auto; padding: 0; width: 570px;" bgcolor="#FFFFFF">
+                        <td style="font-size:24px; text-align:center;" class="mobile-center body-padding w320">
+                        <br>
+                OTP E-Mail One Time Password!!!
 
+                        </td>
+                      </tr>
+                    </table>
+
+                    <table cellspacing="0" cellpadding="0" class="force-full-width">
+                      <tr>
+
+                        <td width="75%" class="">
+                          <table cellspacing="0" cellpadding="0" class="w320 w100p"><br>
                             <tr>
-                              <td class="content-cell" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; padding: 35px; word-break: break-word;">
-                                <h1 style="box-sizing: border-box; color: #2F3133; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 19px; font-weight: bold; margin-top: 0;" align="left">Hi,</h1>
-                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your Visionex account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
-                                <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
-                                  <tr>
-                                    <td align="center" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; word-break: break-word;">
+                              <td class="mobile-center activate-now" style="font-size:17px; text-align:center; padding: 0 75px; color:#6f6f6f;" >
 
-                                      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
-                                        <tr>
-                                          <td align="center" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; word-break: break-word;">
-                                             <h5 style="box-sizing: border-box; color: #2F3133; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px; font-weight: bold; margin-top: 0;" align="left">${newCreatedPassword}</h5>
-                                          </td>
-                                        </tr>
-                                      </table>
-                                    </td>
-                                  </tr>
-                                </table>
-                                <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">Thanks,
-                                <br />The Visionex Team</p>
-
+                               Dear ${userMailId},
                               </td>
                             </tr>
                           </table>
                         </td>
                       </tr>
+                    </table>
+                      <table cellspacing="0" cellpadding="0" width="100%">
                       <tr>
+                        <td style="text-align:left; font-size:13px;" class="mobile-center body-padding w320">
+                        <br>Your One Time Password (OTP) for resetting the password for your Wallet account is given below.Please enter this code in the OTP code box listed on the page.
+                      <br>
+                        </td>
                       </tr>
                     </table>
-                  </td>
-                </tr>
-              </table>
-            </body>
-          </html>`
-      };
-      transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(newCreatedPassword + 'Email sent: ' + info.response);
-          //res.json(200,"Message Send Succesfully");
-          console.log("createing encryptedPassword ....");
-          bcrypt.hash(newCreatedPassword.toString(), 10, function(err, hash) {
-            if (err) return next(err);
-            var newEncryptedPass = hash;
-            User.update({
-                email: userMailId
-              }, {
-                encryptedForgotPasswordOTP: newEncryptedPass
-              })
-              .exec(function(err, updatedUser) {
-                if (err) {
-                  return res.serverError(err);
-                }
-                console.log("OTP forgot update successfully!!!");
-                return res.json({
-                  "message": "Otp sent to  user Email ",
-                  "userMailId": userMailId,
-                  statusCode: 200
-                });
+
+                    <table style="margin:0 auto;" cellspacing="0" cellpadding="10" width="100%">
+                      <tr>
+                        <td style="text-align:center; margin:0 auto;">
+                        <br>
+                          <div>
+                                <div href="http://"
+                              style="background-color:#f5774e;color:#ffffff;display:inline-block;font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:45px;text-align:center;text-decoration:none;width:180px;-webkit-text-size-adjust:none;">${newCreatedPassword}</div>
+                           </div>
+                          <br>
+                        </td>
+                      </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" width="100%">
+                      <tr>
+                        <td style="text-align:left; font-size:13px;" class="mobile-center body-padding w320">
+                        <br>
+                        <strong>Please Note : </strong><br>
+                1. Do not share your credentials or otp with anyone on email.<br>
+                2. Wallet never asks you for your credentials or otp.<br>
+                3. Always create a strong password and keep different passwords for different websites.<br>
+                4. Ensure you maintain only one account on wallet to enjoy our awesome services.<br><br><br>
+                        </td>
+                      </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" width="100%">
+                      <tr>
+                        <td style="text-align:left; font-size:13px;" class="mobile-center body-padding w320">
+                        <br>
+                          If you have any questions regarding Visionex.io please read our FAQ or use our support form wallet eamil address). Our support staff will be more than happy to assist you.<br><br>
+                        </td>
+                      </tr>
+                    </table>
+                     <table cellspacing="0" cellpadding="0" width="100%">
+                      <tr>
+                        <td style="text-align:left; font-size:13px;" class="mobile-center body-padding w320">
+                        <br>
+                        <b>Regards,</b><br>
+                         Visionex.io team<br>Thank you<br><br><br>
+                        </td>
+                      </tr>
+                    </table>
+
+
+
+                    <table cellspacing="0" cellpadding="0" bgcolor="#363636"  class="force-full-width">
+
+                      <tr>
+                        <td style="color:#f0f0f0; font-size: 14px; text-align:center; padding-bottom:4px;"><br>
+                          © 2017 All Rights Reserved Visionex.io
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color:#27aa90; font-size: 14px; text-align:center;">
+                          <a href="#">View in browser</a> | <a href="#">Contact</a> | <a href="#">Unsubscribe</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="font-size:12px;">
+                          &nbsp;
+                        </td>
+                      </tr>
+                    </table>
+
+                    </td>
+                  </tr>
+                </table>
+
+                </td>
+              </tr>
+            </table>
+
+          </center>
+
+
+
+
+          </td>
+        </tr>
+      </table>
+      </body>
+      </html>
+      `
+    };
+    transporter.sendMail(mailOptions, function(error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(newCreatedPassword + 'Email sent: ' + info.response);
+        //res.json(200,"Message Send Succesfully");
+        console.log("createing encryptedPassword ....");
+        bcrypt.hash(newCreatedPassword.toString(), 10, function(err, hash) {
+          if (err) return next(err);
+          var newEncryptedPass = hash;
+          User.update({
+              email: userMailId
+            }, {
+              encryptedForgotPasswordOTP: newEncryptedPass
+            })
+            .exec(function(err, updatedUser) {
+              if (err) {
+                return res.serverError(err);
+              }
+              console.log("OTP forgot update successfully!!!");
+              return res.json({
+                "message": "Otp sent on user mail id",
+                "userMailId": userMailId,
+                statusCode: 200
               });
-          });
-        }
-      });
+            });
+        });
+      }
     });
-  },
+  }
+  else{
+    return res.json({
+        "message": "Oop's First verify your email!.",
+        statusCode: 401
+      });
+  }
+
+  });
+},
+  // sentOtpToEmailForgotPassword: function(req, res, next) {
+  //
+  //   console.log("Enter into sentOtpToEmailForgotPassword");
+  //   var userMailId = req.body.userMailId;
+  //   if (!userMailId) {
+  //     console.log("Can't be empty!!! by user.....");
+  //     return res.json({
+  //       "message": "Can't be empty!!!",
+  //       statusCode: 400
+  //     });
+  //   }
+  //   User.findOne({
+  //     email: userMailId
+  //   }).exec(function(err, user) {
+  //     if (err) {
+  //       return res.json({
+  //         "message": "Error to find user",
+  //         statusCode: 401
+  //       });
+  //     }
+  //     if (!user) {
+  //       return res.json({
+  //         "message": "This email not exist!",
+  //         statusCode: 401
+  //       });
+  //     }
+  //
+  //     var newCreatedPassword = Math.floor(100000 + Math.random() * 900000);
+  //     console.log("newCreatedPassword :: " + newCreatedPassword);
+  //     var mailOptions = {
+  //       from: sails.config.common.supportEmailId,
+  //       to: userMailId,
+  //       subject: 'Please reset your password',
+  //       html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  //         <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+  //           <head>
+  //             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  //             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  //             <title>Set up a new password for [Product Name]</title>
+  //
+  //
+  //           </head>
+  //           <body style="-webkit-text-size-adjust: none; box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; height: 100%; line-height: 1.4; margin: 0; width: 100% !important;" bgcolor="#F2F4F6"><style type="text/css">
+  //         body {
+  //         width: 100% !important; height: 100%; margin: 0; line-height: 1.4; background-color: #F2F4F6; color: #74787E; -webkit-text-size-adjust: none;
+  //         }
+  //         @media only screen and (max-width: 600px) {
+  //           .email-body_inner {
+  //             width: 100% !important;
+  //           }
+  //           .email-footer {
+  //             width: 100% !important;
+  //           }
+  //         }
+  //         @media only screen and (max-width: 500px) {
+  //           .button {
+  //             width: 100% !important;
+  //           }
+  //         }
+  //         </style>
+  //             <span class="preheader" style="box-sizing: border-box; display: none !important; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 1px; line-height: 1px; max-height: 0; max-width: 0; mso-hide: all; opacity: 0; overflow: hidden; visibility: hidden;">Use this link to reset your password. The link is only valid for 24 hours.</span>
+  //             <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0; padding: 0; width: 100%;" bgcolor="#F2F4F6">
+  //               <tr>
+  //                 <td align="center" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; word-break: break-word;">
+  //                   <table class="email-content" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0; padding: 0; width: 100%;">
+  //
+  //
+  //                     <tr>
+  //                       <td class="email-body" width="100%" cellpadding="0" cellspacing="0" style="-premailer-cellpadding: 0; -premailer-cellspacing: 0; border-bottom-color: #EDEFF2; border-bottom-style: solid; border-bottom-width: 1px; border-top-color: #EDEFF2; border-top-style: solid; border-top-width: 1px; box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0; padding: 0; width: 100%; word-break: break-word;" bgcolor="#FFFFFF">
+  //                         <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0 auto; padding: 0; width: 570px;" bgcolor="#FFFFFF">
+  //
+  //                           <tr>
+  //                             <td class="content-cell" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; padding: 35px; word-break: break-word;">
+  //                               <h1 style="box-sizing: border-box; color: #2F3133; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 19px; font-weight: bold; margin-top: 0;" align="left">Hi,</h1>
+  //                               <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">You recently requested to forgot your password for your Visionex account. Use the OTP below to reset it. <strong style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;"></strong></p>
+  //                               <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
+  //                                 <tr>
+  //                                   <td align="center" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; word-break: break-word;">
+  //
+  //                                     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
+  //                                       <tr>
+  //                                         <td align="center" style="box-sizing: border-box; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; word-break: break-word;">
+  //                                            <h5 style="box-sizing: border-box; color: #2F3133; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px; font-weight: bold; margin-top: 0;" align="left">${newCreatedPassword}</h5>
+  //                                         </td>
+  //                                       </tr>
+  //                                     </table>
+  //                                   </td>
+  //                                 </tr>
+  //                               </table>
+  //                               <p style="box-sizing: border-box; color: #74787E; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">Thanks,
+  //                               <br />The Visionex Team</p>
+  //
+  //                             </td>
+  //                           </tr>
+  //                         </table>
+  //                       </td>
+  //                     </tr>
+  //                     <tr>
+  //                     </tr>
+  //                   </table>
+  //                 </td>
+  //               </tr>
+  //             </table>
+  //           </body>
+  //         </html>`
+  //     };
+  //     transporter.sendMail(mailOptions, function(error, info) {
+  //       if (error) {
+  //         console.log(error);
+  //       } else {
+  //         console.log(newCreatedPassword + 'Email sent: ' + info.response);
+  //         //res.json(200,"Message Send Succesfully");
+  //         console.log("createing encryptedPassword ....");
+  //         bcrypt.hash(newCreatedPassword.toString(), 10, function(err, hash) {
+  //           if (err) return next(err);
+  //           var newEncryptedPass = hash;
+  //           User.update({
+  //               email: userMailId
+  //             }, {
+  //               encryptedForgotPasswordOTP: newEncryptedPass
+  //             })
+  //             .exec(function(err, updatedUser) {
+  //               if (err) {
+  //                 return res.serverError(err);
+  //               }
+  //               console.log("OTP forgot update successfully!!!");
+  //               return res.json({
+  //                 "message": "Otp sent to  user Email ",
+  //                 "userMailId": userMailId,
+  //                 statusCode: 200
+  //               });
+  //             });
+  //         });
+  //       }
+  //     });
+  //   });
+  // },
   verifyOtpToEmailForgotPassord: function(req, res, next) {
 
     console.log("Enter into verifyOtpToEmailForgotPassord");
