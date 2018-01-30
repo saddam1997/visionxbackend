@@ -705,9 +705,9 @@ createNewUser: function(req, res) {
   //   }
   //
   //   if (userspendingpassword !== userconfirmspendingpassword) {
-  //     console.log("transcationpassword and confirmtranscationpassword doesn\'t match!");
+  //     console.log("transactionpassword and confirmtransactionpassword doesn\'t match!");
   //     return res.json({
-  //       "message": 'The transcation passwords provided by you is not match with each other .Please provide valid one or re-enter them correctly.',
+  //       "message": 'The transaction passwords provided by you is not match with each other .Please provide valid one or re-enter them correctly.',
   //       statusCode: 400
   //     });
   //   }
@@ -739,7 +739,7 @@ createNewUser: function(req, res) {
   //     if (!user) {
   //       bcrypt.hash(userspendingpassword, 10, function(err, hashspendingpassword) {
   //         if (err) {
-  //           console.log("Error To bcrypt transcationpassword");
+  //           console.log("Error To bcrypt transactionpassword");
   //           return res.json({
   //             "message": err,
   //             statusCode: 500
@@ -1116,7 +1116,7 @@ createNewUser: function(req, res) {
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                       <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                        Kind Regards,
+                                        Thanks & Regards,
                                       </td>
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -1504,7 +1504,7 @@ createNewUser: function(req, res) {
     });
   },
   updateCurrentSpendingPassword: function(req, res, next) {
-    console.log("Enter into updateCurrentTranscationPassword");
+    console.log("Enter into updateCurrenttransactionPassword");
     var userMailId = req.body.userMailId;
     var currentSpendingPassword = req.body.currentSpendingPassword;
     var newSpendingPassword = req.body.newSpendingPassword;
@@ -1519,14 +1519,14 @@ createNewUser: function(req, res) {
     if (currentSpendingPassword == newSpendingPassword) {
       console.log("Can't be empty!!! by user.....");
       return res.json({
-        "message": "Current transcation password cannot be same as new transcation password",
+        "message": "Current transaction password cannot be same as new transaction password",
         statusCode: 401
       });
     }
     if (newSpendingPassword != confirmNewSpendingPassword) {
       console.log("Can't be empty!!! by user.....");
       return res.json({
-        "message": "New transcation password and confirm new transcation password are not match",
+        "message": "New transaction password and confirm new transaction password are not match",
         statusCode: 401
       });
     }
@@ -1555,7 +1555,7 @@ createNewUser: function(req, res) {
         }
         if (!valid) {
           return res.json({
-            "message": "Please enter correct currentTranscationPassword",
+            "message": "Please enter correct currenttransactionPassword",
             statusCode: 401
           });
         } else {
@@ -1579,7 +1579,7 @@ createNewUser: function(req, res) {
                 }
                 console.log("Your password updated successfully!!!");
                 return res.json({
-                  "message": "Your transcation password has been  updated successfully",
+                  "message": "Your transaction password has been  updated successfully",
                   statusCode: 200
                 });
               });
@@ -1590,7 +1590,7 @@ createNewUser: function(req, res) {
     });
   },
   sentOtpToUpdateSpendingPassword: function(req, res, next) {
-    console.log("Enter into sentOtpToUpdateTranscationPassword");
+    console.log("Enter into sentOtpToUpdatetransactionPassword");
     var userMailId = req.body.userMailId;
     var currentPassword = req.body.currentPassword;
     if (!userMailId || !currentPassword) {
@@ -1635,8 +1635,8 @@ createNewUser: function(req, res) {
           var mailOptions = {
             from: sails.config.common.supportEmailId,
             to: userMailId,
-            subject: 'Please reset your transcation password',
-            text: 'We heard that you lost your BccPay transcation password. Sorry about that! ' +
+            subject: 'Please reset your transaction password',
+            text: 'We heard that you lost your BccPay transaction password. Sorry about that! ' +
               '\n But don’t worry! You can use this otp reset your password ' + newCreatedPassword
           };
           transporter.sendMail(mailOptions, function(error, info) {
@@ -1674,7 +1674,7 @@ createNewUser: function(req, res) {
     });
   },
   verifyOtpToEmailForgotSpendingPassord: function(req, res, next) {
-    console.log("Enter into verifyOtpToEmailForgotTranscationPassord ");
+    console.log("Enter into verifyOtpToEmailForgottransactionPassord ");
     var userMailId = req.body.userMailId;
     var otp = req.body.otp;
     if (!userMailId || !otp) {
@@ -1715,7 +1715,7 @@ createNewUser: function(req, res) {
         } else {
           console.log("OTP is verified successfully");
           res.json(200, {
-            "message": "OTP for transcation password is verified successfully",
+            "message": "OTP for transaction password is verified successfully",
             "userMailId": userMailId,
             statusCode: 200
           });
@@ -1724,7 +1724,7 @@ createNewUser: function(req, res) {
     });
   },
   updateForgotSpendingPassordAfterVerify: function(req, res, next) {
-    console.log("Enter into updateForgotTranscationPassordAfterVerify");
+    console.log("Enter into updateForgottransactionPassordAfterVerify");
     var userMailId = req.body.userMailId;
     var newSpendingPassword = req.body.newSpendingPassword;
     var confirmSpendingPassword = req.body.confirmSpendingPassword;
@@ -1738,7 +1738,7 @@ createNewUser: function(req, res) {
     if (newSpendingPassword != confirmSpendingPassword) {
       console.log("NewPassword and Confirm NewPassword not match");
       return res.json({
-        "message": "New Transcation Password and Confirm NewTranscation Password not matched",
+        "message": "New transaction Password and Confirm Newtransaction Password not matched",
         statusCode: 401
       });
     }
@@ -1777,7 +1777,7 @@ createNewUser: function(req, res) {
             }
             console.log("Update password successfully!!!");
             return res.json({
-              "message": "Your transcation password has been updated successfully",
+              "message": "Your transaction password has been updated successfully",
               statusCode: 200
             });
           });
@@ -1837,7 +1837,7 @@ createNewUser: function(req, res) {
                   statusCode: 401
                 });
               }
-              console.log("Update current transcationPassword successfully!!!");
+              console.log("Update current transactionPassword successfully!!!");
 
               User.findOne({
                 email: userMailId
@@ -2233,7 +2233,7 @@ updateResetSpendingPassword: function(req, res, next) {
   if (newSpendingPassword != confirmNewSpendingPassword) {
     console.log("Can't be empty!!! by user.....");
     return res.json({
-      "message": "New transcation password and confirm new transcation password are not match",
+      "message": "New transaction password and confirm new transaction password are not match",
       statusCode: 401
     });
   }
@@ -2273,7 +2273,7 @@ updateResetSpendingPassword: function(req, res, next) {
               }
               console.log("Your password updated successfully!!!");
               return res.json({
-                "message": "Your transcation password has been  updated successfully",
+                "message": "Your transaction password has been  updated successfully",
                 statusCode: 200
               });
             });

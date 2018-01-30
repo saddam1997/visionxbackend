@@ -112,7 +112,7 @@ module.exports = {
                               }, function(error, message) {
                                   if (!error) {
                                       return res.json({
-                                      "message": "Otp has been sent on your Mobile as well as Email.",
+                                      "message": "Otp has been sent on your Mobile.",
                                       "userMailId": useremail,
                                       user : user,
                                       statusCode: 200
@@ -127,7 +127,7 @@ module.exports = {
                    });
                }
                   else{
-                        res.json({
+                      return  res.json({
                         user: user,
                         statusCode: 200,
                         token: jwToken.issue({

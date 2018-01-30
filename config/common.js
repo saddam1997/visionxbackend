@@ -31,9 +31,11 @@ twilioTokenId : '1fbb5843000dc4250ea6033e0ad97a6e',
   COMPANYACCOUNTVCN: "visionexVCN@gmail.com",
 
   imgegeContainer: '/var/www/html/visionkyc/',
+  
   supportEmailId: 'visioncoin017@gmail.com', //Support Email Id to send mail signup and login and forgot password
   supportEmailIdpass: 'vision@123', //Support Email Id passoword
   supportEmailIdService: 'gmail',
+
   LABELPREFIX: 'EX',
   BTCMARKETID: 1,
   BCHMARKETID: 2,
