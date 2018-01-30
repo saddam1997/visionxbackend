@@ -25,6 +25,224 @@ var projectURL = sails.config.common.projectURL;
 var client = new twilio(sails.config.common.twilioAuthId,sails.config.common.twilioTokenId);
 
 module.exports = {
+
+  enabledLoginServiceType : function(req, res){
+  let email = req.body.userMailId;
+  let loginServiceType = req.body.loginServiceType;
+
+  if(email && loginServiceType){
+
+      User.findOne({email : email}).exec(function(err, user){
+        if(err){
+          return res.json({
+            status : 400,
+            message : 'Error while fetching from DB'
+          })
+        }
+        if(user){
+          console.log('switch::'+loginServiceType);
+          switch(loginServiceType){
+
+            case "1": console.log('switch::'+loginServiceType);
+                  User.update({email : email}, {tfaStatus : 1, mobileStatus : 0})
+                  .exec(function(error, user1){
+                      if(error){
+                        return res.json({
+                          status : 400,
+                          message : 'Error while fetching from DB'
+                        });
+                      }
+                      if(user1){
+                        return res.json({
+                          status : 200,
+                          message : 'Service has been enable for Two factor authentication.'
+                        });
+                      }
+
+                  });
+            break;
+
+            case "2":console.log('switch::'+loginServiceType);
+                  User.update({email : email}, {tfaStatus : 0, mobileStatus : 1})
+                  .exec(function(error, user1){
+                       if(error){
+                        return res.json({
+                          status : 400,
+                          message : 'Error while fetching from DB'
+                        });
+                      }
+                      if(user1){
+                        return res.json({
+                          status : 200,
+                          message : 'Service has been enable for mobile OTP.'
+                        });
+                      }
+
+                  });
+            break;
+
+          }
+
+        }
+        else{
+          return res.json({
+             status : 400,
+             message : 'Email does not exists.'
+           })
+        }
+
+      })
+  }
+  else{
+    return res.json({
+      status : 400,
+      message : 'Please enter your enable service type.'
+    })
+  }
+
+},
+
+sendOTPmobileVerification : function(req, res){
+  let mobileNo = req.body.mobileNo;
+
+  if(mobileNo){
+    var twoFactorAuthentication = Math.floor(100000 + Math.random() * 900000);
+    console.log("twoFactorAuthentication :: " + twoFactorAuthentication);
+
+      // let condition ={ $and: [ { email: { $ne: null } }, { mobile: mobileNo } ] };
+      let condition ={ mobile : mobileNo , isSignUp : true};
+
+      User.findOne(condition).exec(function(err, userdata){
+        if(err){
+            return res.json({
+            status : 400,
+            messgae : 'Error in server' +err
+          });
+        }
+        if(userdata){
+          return res.json({
+            status : 400,
+            message : mobileNo +' Already register with us.'
+          });
+        }
+        else{
+            client.messages.create({
+            to : '+91'+mobileNo,
+            from:'+15189667398',
+            body:'Your Visionex OTP for Mobile Verification is : '+twoFactorAuthentication
+          }, function(error, message) {
+              if (!error) {
+
+                  bcrypt.hash(twoFactorAuthentication.toString(), 10, function(err, hash) {
+                    if (err) return next(err);
+                    var twofactAuth = hash;
+                    console.log('twofactAuth:::' + twofactAuth);
+                     let userObj = {
+                      mobile : mobileNo,
+                      encryptMobileOTP : twofactAuth
+                    };
+
+                    User.updateOrCreate({ mobile : mobileNo},userObj).then((user) => {
+                      if(!user){
+                          console.log('User saved in DB' + data);
+                          return res.json({
+                            "message": "Error while saving in DB"+err,
+                            statusCode: 400
+                          })
+                      }
+                      else{
+                        return res.json({
+                        "message": "Otp has been sent on your Mobile.",
+                        "mobileNo" : mobileNo,
+                        statusCode: 200,
+                        data : user
+                      })
+                    }
+
+                  })
+                  .catch(sails.log.error);
+
+                });
+
+              } else {
+                  console.log('Oops! There was an error.'+error);
+                  return res.json({err : error, status : 400,message : "OTP can't be send on your mobile number."})
+              }
+           });
+        }
+      })
+
+  }
+  else{
+    return res.json({
+      status : 400,
+      messgae : 'Please enter mobile number.'
+    });
+  }
+},
+
+verifyMobileOTP : function(req, res){
+    console.log("Enter into verifyMobileOTP");
+  var userMobileNo = req.body.mobileNo;
+  var otp = req.body.otp;
+  if (!userMobileNo || !otp) {
+    console.log("Can't be empty!!! by user.....");
+    return res.json({
+      "message": "Can't be empty!!!",
+      statusCode: 400
+    });
+  }
+  User.findOne({
+    mobile: userMobileNo
+  }).exec(function(err, user) {
+    if (err) {
+      return res.json({
+        "message": "Error to find user",
+        statusCode: 401
+      });
+    }
+    if (!user) {
+      return res.json({
+        "message": "Invalid Mobile Number!",
+        statusCode: 401
+      });
+    }
+    User.compareMobileOTP(otp, user, function(err, valid) {
+      if (err) {
+        console.log("Error to compare otp");
+        return res.json({
+          "message": "Error to compare otp",
+          statusCode: 401
+        });
+      }
+      if (!valid) {
+        return res.json({
+          "message": "Please enter correct otp!",
+          statusCode: 401
+        });
+      } else {
+        User.update({mobile : userMobileNo},{ isMobileVerified : true}).exec(function(err, data){
+          if(err){
+            return res.json({
+              status : 400,
+              messgae : 'Not verified Yet'
+            })
+          }
+          else{
+            console.log("OTP is verified successfully");
+            res.json(200, {
+              "message": "OTP  verified successfully",
+              "userMobileNo": userMobileNo,
+              statusCode: 200,
+              data : data
+            });
+          }
+        })
+
+      }
+    });
+  });
+},
   createNewUser: function(req, res) {
     console.log("Enter into createNewUser :: " + req.body.email);
     var useremailaddress = req.body.email;
