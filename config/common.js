@@ -11,6 +11,11 @@ module.exports.common = {
 
   projectURL: 'https://visionex.io:1338',
 
+//For message sending credential --TWILIO
+twilioAuthId : 'AC84ffcebc0be146ac5015574660bbdb8b',
+twilioTokenId : '1fbb5843000dc4250ea6033e0ad97a6e',
+
+
   txFeeWithdrawSuccessBTC: 0.0001,
   txFeeWithdrawSuccessBCH: 0.0001,
   txFeeWithdrawSuccessLTC: 0.0001,

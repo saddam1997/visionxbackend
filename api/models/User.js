@@ -89,10 +89,15 @@ module.exports = {
     userVCNAddress: {
       type: 'string'
     },
-
     encryptedPassword: {
       type: 'string'
     },
+    encryptedTwoFactorAuthentication : {
+      type : 'string'
+    },
+    encryptedResetSpendingpassword: {
+     type: 'string'
+   },
     encryptedSpendingpassword: {
       type: 'string'
     },
@@ -127,6 +132,29 @@ module.exports = {
       type: "boolean",
       defaultsTo: false
     },
+
+    isSignUp: {
+      type: "boolean",
+      defaultsTo: false
+    },
+    isMobileVerified : {
+        type : 'boolean',
+         defaultsTo: 0
+      },
+      mobile : {
+        type : 'string'
+      },
+      encryptMobileOTP : {
+        type : 'string'
+      },
+
+
+
+    mobileStatus: {
+      type: "boolean",
+      defaultsTo: true
+    },
+
     googlesecreatekey: {
       type: 'string'
     },
@@ -184,21 +212,60 @@ module.exports = {
       delete obj.encryptedEmailVerificationOTP;
       delete obj.encryptedForgotPasswordOTP;
       delete obj.encryptedForgotSpendingPasswordOTP;
+      delete obj.encryptMobileOTP;
       return obj;
     }
   },
-  beforeCreate: function(values, next) {
-    bcrypt.genSalt(10, function(err, salt) {
-      if (err) return next(err);
-      bcrypt.hash(values.password, salt, function(err, hash) {
-        if (err) return next(err);
-        values.encryptedPassword = hash;
-        next();
+  // beforeCreate: function(values, next) {
+  //   bcrypt.genSalt(10, function(err, salt) {
+  //     if (err) return next(err);
+  //     bcrypt.hash(values.password, salt, function(err, hash) {
+  //       if (err) return next(err);
+  //       values.encryptedPassword = hash;
+  //       next();
+  //     })
+  //   })
+  // },
+  compareMobileOTP : function(otp, user, cb = () => {}) {
+    bcrypt.compare(otp, user.encryptMobileOTP, function(err, match) {
+      return new Promise(function(resolve, reject) {
+        if (err) {
+          cb(err);
+          return reject(err);
+        }
+        cb(null, match)
+        resolve(match);
       })
     })
   },
+
+  compareLoginOTP: function(typeOtp, user, cb = () => {}) {
+   bcrypt.compare(typeOtp, user.encryptedTwoFactorAuthentication, function(err, match) {
+     return new Promise(function(resolve, reject) {
+       if (err) {
+         cb(err);
+         return reject(err);
+       }
+       cb(null, match)
+       resolve(match);
+     })
+   })
+ },
+
   comparePassword: function(password, user, cb = () => {}) {
     bcrypt.compare(password, user.encryptedPassword, function(err, match) {
+      return new Promise(function(resolve, reject) {
+        if (err) {
+          cb(err);
+          return reject(err);
+        }
+        cb(null, match)
+        resolve(match);
+      })
+    })
+  },
+  compareResetSpendingpassword: function(resetspendingpassword, user, cb = () => {}) {
+    bcrypt.compare(resetspendingpassword, user.encryptedResetSpendingpassword, function(err, match) {
       return new Promise(function(resolve, reject) {
         if (err) {
           cb(err);

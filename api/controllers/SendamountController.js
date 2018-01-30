@@ -127,7 +127,7 @@ module.exports = {
             if (!valid) {
               console.log("Invalid transcationpassword !!!");
               return res.json({
-                "message": 'Enter valid transcation password',
+                "message": 'Enter valid transaction password',
                 statusCode: 401
               });
             } else {
@@ -442,7 +442,7 @@ module.exports = {
             if (!valid) {
               console.log("Invalid transcationpassword !!!");
               return res.json({
-                "message": 'Enter valid transcation password',
+                "message": 'Enter valid transaction password',
                 statusCode: 401
               });
             } else {
@@ -757,7 +757,7 @@ module.exports = {
             if (!valid) {
               console.log("Invalid transcationpassword !!!");
               return res.json({
-                "message": 'Enter valid transcation password',
+                "message": 'Enter valid transaction password',
                 statusCode: 401
               });
             } else {
@@ -1074,7 +1074,7 @@ module.exports = {
             if (!valid) {
               console.log("Invalid transcationpassword !!!");
               return res.json({
-                "message": 'Enter valid transcation password',
+                "message": 'Enter valid transaction password',
                 statusCode: 401
               });
             } else {
@@ -1328,6 +1328,7 @@ module.exports = {
                             console.log("Return user details after sending amount!!");
                             res.json({
                               user: user,
+                              message : 'Your amount send successfully.',
                               statusCode: 200
                             });
                           });
