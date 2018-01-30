@@ -44,7 +44,7 @@ module.exports = {
           switch(loginServiceType){
 
             case "1": console.log('switch::'+loginServiceType);
-                  User.update({email : email}, {tfaStatus : 1, mobileStatus : 0})
+                  User.update({email : email}, {tfastatus : 1, mobileStatus : 0})
                   .exec(function(error, user1){
                       if(error){
                         return res.json({
@@ -63,7 +63,7 @@ module.exports = {
             break;
 
             case "2":console.log('switch::'+loginServiceType);
-                  User.update({email : email}, {tfaStatus : 0, mobileStatus : 1})
+                  User.update({email : email}, {tfastatus : 0, mobileStatus : 1})
                   .exec(function(error, user1){
                        if(error){
                         return res.json({
