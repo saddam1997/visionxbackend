@@ -32,12 +32,12 @@ twilioTokenId : '1fbb5843000dc4250ea6033e0ad97a6e',
 
   imgegeContainer: '/var/www/html/visionkyc/',
 
-  // supportEmailId: 'info@visionex.io', //Support Email Id to send mail signup and login and forgot password
-  // supportEmailIdpass: 'vision@123', //Support Email Id passoword
-  // supportEmailIdService: 'zoho',
-  supportEmailId: 'visioncoin017@gmail.com', //Support Email Id to send mail signup and login and forgot password
+  supportEmailId: 'info@visionex.io', //Support Email Id to send mail signup and login and forgot password
   supportEmailIdpass: 'vision@123', //Support Email Id passoword
-  supportEmailIdService: 'gmail',
+  supportEmailIdService: 'zoho',
+  // supportEmailId: 'visioncoin017@gmail.com', //Support Email Id to send mail signup and login and forgot password
+  // supportEmailIdpass: 'vision@123', //Support Email Id passoword
+  // supportEmailIdService: 'gmail',
 
 
   LABELPREFIX: 'EX',
