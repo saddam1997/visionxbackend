@@ -549,6 +549,49 @@ module.exports = {
       });
     });
   },
+  updateKYCformStatusByUserId: function(req, res) {
+  console.log("Enter into updateKYCformStatusByUserId :: " + JSON.stringify(req.body));
+  var userId = req.body.userId;
+  var kycStatus = req.body.status;
+
+  if (!userId || !kycStatus) {
+    return res.json({
+      "message": "Can't be empty!!!",
+      statusCode: 400
+    });
+  }
+  User.findOne({
+      id: userId
+    })
+    .exec(function(err, user) {
+      if (err) {
+        return res.serverError(err);
+      }
+      if (!user) {
+        return res.json({
+          "message": "User not found!!!",
+          statusCode: 400
+        });
+      }
+      if(user){
+
+        if(sails.config.common.KYCsuccess ==kycStatus || sails.config.common.KYCrejected ==kycStatus){
+
+          User.update( {id : userId}, { verificationStatus : kycStatus}).exec(function(err, data){
+            if(err) res.send({statusCode : 400 , message : 'Server Error'});
+            if(data)  {
+               res.send({statusCode : 200 , message : 'KYC form status has been chnaged.'});
+            }
+          })
+        }
+        else{
+          res.send({statusCode : 400 , message : 'KYC form either accept it or reject it'});
+        }
+
+      }
+
+    });
+},
   getVerificationDetails: function(req, res) {
     console.log("Enter into addVerificationDetails :: " + JSON.stringify(req.body));
     var userId = req.body.userId;
