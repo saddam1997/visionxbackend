@@ -6,6 +6,8 @@
  */
 
 //External Dependencies.........taxProofImageName
+var nodemailer = require('nodemailer');
+
 var transporter = nodemailer.createTransport({
   service: sails.config.common.supportEmailIdService,
   auth: {
